@@ -18,6 +18,17 @@ function query(sql, args) {
   });
 }
 
+function end() {
+  return new Promise((resolve, reject) => {
+    pool.end((err) => {
+      if (err)
+        return reject(err);
+      resolve();
+    });
+  });
+}
+
 module.exports = {
-    query: query
+    query: query,
+    end
 }
